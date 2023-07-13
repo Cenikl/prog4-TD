@@ -8,6 +8,7 @@
 <body>
         <div class="mainBody">
                 <h4>Create a new employee</h4>
+                <a class="goUpdate" th:href="@{/index}">Return to main menu</a>
                 <form action="#" th:action="@{/saveEmployee}" method="post" enctype="multipart/form-data">
                         <label th:text="FirstName"/>
                         <input type="text" name="name" />

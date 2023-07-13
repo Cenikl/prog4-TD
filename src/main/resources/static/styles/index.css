@@ -65,3 +65,30 @@ form {
     padding: 10px 20px;
     font-size: 16px;
 }
+.cheking{
+    background-color: #22d6e6;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color;
+    font-size: 16px;
+    padding: 8px;
+}
+.cheking:hover{
+    background-color: #2e9efa;
+}
+.deleting{
+    background-color: #ee1f30;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border:none;
+    transition: background-color;
+    font-size: 16px;
+    padding: 8px;
+}
+.deleting:hover{
+    background-color: #2e9efa;
+}

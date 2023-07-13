@@ -32,8 +32,8 @@
                 <td th:text="${employee.birthDate}" />
                 <td th:text="${employee.matricule}" />
                 <td>
-                    <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}">Check</a>
-                    <button>Delete</button>
+                    <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}" class="cheking">Check</a>
+                    <button class="deleting">Delete</button>
                 </td>
             </tr>
         </tbody>

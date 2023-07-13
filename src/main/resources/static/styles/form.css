@@ -19,6 +19,20 @@ body{
     font-size: 25px;
     font-family: Arial, sans-serif;
 }
+.goUpdate{
+    background-color: #e67e22;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color;
+    margin: 20px 0;
+    font-size: 16px;
+    padding: 8px;
+}
+.goUpdate:hover{
+    background-color: #2e9efa;
+}
 form {
     border: 1px solid #ccc;
     display: flex;

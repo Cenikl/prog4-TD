@@ -33,11 +33,12 @@ body{
     align-items: center;
     font-family: Arial, sans-serif;
     border: 1px solid black;
+
 }
 .desc h1{
     text-align: center;
-    padding-top: 10px;
-    font-size: 20px;
+    padding-top: 10%;
+    font-size: 17px;
     font-family: Arial, sans-serif;
 }
 .emplInfo {
