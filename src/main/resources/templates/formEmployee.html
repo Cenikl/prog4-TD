@@ -7,42 +7,27 @@
 </head>
 <body>
 <div class="mainBody" th:object="${employee}">
-    <div>
-        <h1>Fiche d'Information sur l'Employee</h1>
-    <div>
-        <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Aucune image">
+    <div class="head">
+        <div class="prfImg">
+            <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Aucune image" class="Img">
+        </div>
+        <div class="desc">
+            <h1>Fiche d'Information sur l'Employee</h1>
+            <a class="goUpdate" th:href="@{/updateEmployee/{matricule}(matricule=${employee.matricule})}">Update information</a>
+        </div>
     </div>
-    </div>
-    <div className="emplInfo">
-        <table >
-            <tr>
-                <td><label th:text="Name" /></td>
-                <td>
-                    <p th:text="*{name}" />
-                </td>
-            </tr>
-            <tr>
-                <td><label th:text="lastName" /></td>
-                <td>
-                    <p th:text="*{lastName}" />
-                </td>
-            </tr>
-            <tr>
-                <td><label th:text="birthDate" /></td>
-                <td>
-                    <p th:text="*{birthDate}" />
-                </td>
-            </tr>
-            <tr>
-                <td><label th:text="Matricule" /></td>
-                <td>
-                    <p th:text="*{matricule}" />
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div th:object="${employee}">
-        <a th:href="@{/updateEmployee/{matricule}(matricule=${employee.matricule})}">Update information</a>
+    <div class="emplInfo">
+        <label th:text="Name" />
+        <p th:text="*{name}" />
+
+        <label th:text="lastName" />
+        <p th:text="*{lastName}" />
+
+        <label th:text="birthDate" />
+        <p th:text="*{birthDate}" />
+
+        <label th:text="Matricule" />
+        <p th:text="*{matricule}" />
     </div>
 </div>
 </body>
