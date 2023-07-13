@@ -2,35 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test HTMl</title>
+    <link th:href="@{/styles/form.css}" rel = "stylesheet"/>
+    <title>Creating an employee</title>
 </head>
 <body>
-        <form action="#" th:action="@{/saveEmployee}" method="post" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <td> <label th:text="FirstName"/></td>
-                    <td><input type="text" name="name" /></td>
-                </tr>
-                <tr>
-                    <td> <label th:text="LastName"/></td>
-                    <td><input type="text" name="lastName" /></td>
-                </tr>
-                <tr>
-                    <td> <label th:text="BirthDate"/></td>
-                    <td><input type="date" name="birthDate"/></td>
-                </tr>
-                <tr>
-                    <td> <label th:text="Matricule"/></td>
-                    <td><input type="text" name="matricule"/></td>
-                </tr>
-                <tr>
-                    <td> <label th:text="Image"/></td>
-                    <td><input type="file" name="testImg"/></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-        </form>
+        <div class="mainBody">
+                <h4>Create a new employee</h4>
+                <form action="#" th:action="@{/saveEmployee}" method="post" enctype="multipart/form-data">
+                        <label th:text="FirstName"/>
+                        <input type="text" name="name" />
+
+                        <label th:text="LastName"/>
+                        <input type="text" name="lastName" />
+
+                        <label th:text="BirthDate"/>
+                        <input type="date" name="birthDate"/>
+
+                        <label th:text="Matricule"/>
+                        <input type="text" name="matricule"/>
+
+                        <label th:text="Image"/></td>
+                        <input type="file" name="testImg"/>
+
+                        <input type="submit" value="Submit" class="btnSubmit"/>
+                </form>
+        </div>
 </body>
 </html>

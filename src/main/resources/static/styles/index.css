@@ -1,7 +1,67 @@
-h4{
-    font-size: 50px;
-    font-family: "Calibri"
+body{
+    background: gray;
+    background-image: linear-gradient(to right, #222, #555);
 }
-tr{
-    border:1px solid black;
+.mainBody h4{
+    text-align: center;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}
+.mainBody{
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: white;
+}
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+table tr td,
+table tr th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+table tr th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+.firstPart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.goCreate{
+    background-color: #e67e22;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color;
+    margin: 20px 0;
+    font-size: 16px;
+    padding: 8px;
+}
+.goCreate:hover{
+    background-color: #2e9efa;
+}
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    padding: 8px;
+}
+.btnSearch{
+    background-color: #e67e22;
+    color: #eeeeee;
+    border:none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
 }

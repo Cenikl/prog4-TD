@@ -1,0 +1,21 @@
+body{
+    background: gray;
+    background-image: linear-gradient(to right, #222, #555);
+}
+.mainBody{
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 750px;
+}
+.mainBody h4{
+    text-align: center;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}

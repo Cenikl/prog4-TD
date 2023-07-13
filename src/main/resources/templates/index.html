@@ -3,29 +3,41 @@
 <head>
     <meta charset = "ISO-8859-1" />
     <link th:href="@{/styles/index.css}" rel = "stylesheet"/>
-    <script th:src="@{/js/test.js}"></script>
     <title>Employees</title>
 </head>
 <body>
-    <h4>Welcome, here the list of employees</h4>
-    <tbody>
-        <tr th:each="employee: ${employees}">
-            <td>Employee's name : </td>
-            <td th:text="${employee.name}" /> <br>
-            <td>Employee's last name : </td>
-            <td th:text="${employee.lastName}" /> <br>
-            <td>Employee's birthdate : </td>
-            <td th:text="${employee.birthDate}" /> <br>
-            <td>Employee's Matricule : </td>
-            <td th:text="${employee.matricule}" /> <br>
-            <td>
-                <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}">Check</a>
-            </td>
-            <br>
-
+<div class="mainBody">
+    <h4>Employee's Exercice</h4>
+    <div class="firstPart">
+        <a class="goCreate" href="http://localhost:8080/form">Create an employee</a>
+    </div>
+    <form>
+        <input type="text" name="" class="search">
+        <button class="btnSearch">Search</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birth Date</th>
+            <th>Matricule</th>
+            <th>Actions</th>
         </tr>
-    </tbody>
-    <a href="http://localhost:8080/form">Create an employee</a>
-    <button type="button" th:onclick="alerting()">Click here</button>
+        </thead>
+        <tbody>
+            <tr th:each="employee: ${employees}">
+                <td th:text="${employee.name}" />
+                <td th:text="${employee.lastName}" />
+                <td th:text="${employee.birthDate}" />
+                <td th:text="${employee.matricule}" />
+                <td>
+                    <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}">Check</a>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
