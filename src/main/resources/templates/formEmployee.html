@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche Employee</title>
+</head>
+<body>
+  <h1>Fiche d'Information sur l'Employee</h1>
+    <div th:object="${employee}" className="emplImg">
+        <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Aucune image">
+    </div>
+    <div className="emplInfo">
+        <table th:object="${employee}">
+            <tr>
+                <td><label th:text="Name" /></td>
+                <td>
+                    <p th:text="*{name}" />
+                </td>
+            </tr>
+            <tr>
+                <td><label th:text="lastName" /></td>
+                <td>
+                    <p th:text="*{lastName}" />
+                </td>
+            </tr>
+            <tr>
+                <td><label th:text="birthDate" /></td>
+                <td>
+                    <p th:text="*{birthDate}" />
+                </td>
+            </tr>
+            <tr>
+                <td><label th:text="Matricule" /></td>
+                <td>
+                    <p th:text="*{matricule}" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div th:object="${employee}">
+        <a th:href="@{/updateEmployee/{matricule}(matricule=${employee.matricule})}">Update information</a>
+    </div>
+</body>
+</html>

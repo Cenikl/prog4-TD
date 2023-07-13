@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+</head>
+<body>
+<div>
+<form action="#" th:action="@{/updateEmp/{matricule}(matricule=${employee.matricule})}"  method="post" enctype="multipart/form-data">
+    <table th:object="${employee}">
+        <tr>
+            <td> <label th:text="FirstName"/></td>
+            <td><input type="text" name="name" th:placeholder="*{name}"/></td>
+        </tr>
+        <tr>
+            <td> <label th:text="LastName"/></td>
+            <td><input type="text" name="lastName" th:placeholder="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td> <label th:text="BirthDate"/></td>
+            <td><input type="date" name="birthDate" th:placeholder="*{birthDate}"/></td>
+        </tr>
+        <tr>
+            <td> <label th:text="Image"/></td>
+            <td><input type="file" name="Img"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+</div>
+</body>
+</html>
