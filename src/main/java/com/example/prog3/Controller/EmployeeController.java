@@ -3,7 +3,6 @@ package com.example.prog3.Controller;
 import com.example.prog3.model.Employee;
 import com.example.prog3.Service.EmployeeService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +19,7 @@ import java.util.Optional;
 @Controller
 @AllArgsConstructor
 public class EmployeeController {
+
     public EmployeeService employeeService;
 
     @GetMapping("/index")
@@ -31,7 +31,7 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public String saveEmployee(@RequestParam("testImg") MultipartFile file, HttpServletRequest request) throws IOException {
         Employee empl = new Employee();
-        empl.setName(request.getParameter("name"));
+        empl.setFirstName(request.getParameter("name"));
         empl.setLastName(request.getParameter("lastName"));
         empl.setBirthDate(request.getParameter("birthDate"));
         empl.setMatricule(request.getParameter("matricule"));
@@ -52,7 +52,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/formEmployee/image/{id}")
-    public ResponseEntity<byte[]> showImage(@PathVariable Long id) {
+    public ResponseEntity<byte[]> showImage(@PathVariable String id) {
         Optional<Employee> employeeOptional = employeeService.getById(id);
         byte[] imageData = employeeOptional.get().getEmplImg();
         HttpHeaders header = new HttpHeaders();
@@ -75,14 +75,14 @@ public class EmployeeController {
     @PostMapping("/updateEmp/{matricule}")
     public String upEmployee(@PathVariable String matricule,@RequestParam("Img") MultipartFile file, HttpServletRequest request){
         Employee employee = employeeService.getByMatricule(matricule);
-        String name = request.getParameter("name") == "" ? employee.getName() : request.getParameter("name");
+        String name = request.getParameter("name") == "" ? employee.getFirstName() : request.getParameter("name");
         String lastName = request.getParameter("lastName") == "" ? employee.getLastName() : request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate") == "" ? employee.getBirthDate() : request.getParameter("birthDate");
         try{
             if(!file.isEmpty()){
                 byte[] fileData = file.getBytes();
                 Employee empl = new Employee();
-                empl.setName(name);
+                empl.setFirstName(name);
                 empl.setLastName(lastName);
                 empl.setMatricule(matricule);
                 empl.setBirthDate(birthDate);

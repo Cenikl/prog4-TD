@@ -12,16 +12,13 @@ import lombok.*;
 @Entity
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    public String id;
 
-    @Column
-    public String name;
+    public String firstName;
 
-    @Column
     public String lastName;
 
-    @Column
     public String birthDate;
 
     @Column(unique = true,nullable = false)
