@@ -11,7 +11,7 @@
         <a class="goUpdate" th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}">Return to employee's information</a>
         <form action="#" th:action="@{/updateEmp/{matricule}(matricule=${employee.matricule})}"  method="post" enctype="multipart/form-data">
             <label th:text="FirstName"/>
-            <input type="text" name="name" th:placeholder="*{name}"/>
+            <input type="text" name="name" th:placeholder="*{firstName}"/>
 
             <label th:text="LastName"/>
             <input type="text" name="lastName" th:placeholder="*{lastName}"/>

@@ -29,18 +29,16 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@RequestParam("testImg") MultipartFile file, HttpServletRequest request) throws IOException {
-        Employee empl = new Employee();
-        empl.setFirstName(request.getParameter("name"));
-        empl.setLastName(request.getParameter("lastName"));
-        empl.setBirthDate(request.getParameter("birthDate"));
-        empl.setMatricule(request.getParameter("matricule"));
+    public String saveEmployee(
+            @RequestParam("testImg") MultipartFile file,
+            @RequestParam("name") String name,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("birthDate") String birthDate) throws IOException {
         if(!file.isEmpty()){
                 byte[] fileData = file.getBytes();
-                empl.setEmplImg(fileData);
-                employeeService.crupdateEmployee(empl);
+                employeeService.createEmployee(name,lastName,birthDate,fileData);
             } else {
-            employeeService.crupdateEmployee(empl);
+            employeeService.createEmployee(name,lastName,birthDate,null);
         }
         return "redirect:/index";
     }
