@@ -1,8 +1,9 @@
-create table employee
+create table if not exists "employee"
 (
-    id varchar constraint employee_id primary key default uuid_generate_v4(),
+    id serial constraint employee_id primary key ,
     first_name varchar not null,
     last_name varchar not null,
+    birth_date varchar not null,
     matricule varchar not null constraint employee_matricule_unique unique,
     empl_img BYTEA
 );

@@ -17,7 +17,7 @@ import java.util.Optional;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
-    public Optional<Employee> getById(String id){
+    public Optional<Employee> getById(Long id){
         return employeeRepository.findById(id);
     }
     public List<Employee> getAllEmployees() {
@@ -37,21 +37,12 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     };
 
-    public Employee crupdateEmployee(Employee employee){
-        Employee employeeOptional = getById(employee.getId()).get();
-        if(employeeOptional != null){
-            employeeOptional.setFirstName(employee.getFirstName());
-            employeeOptional.setLastName(employee.getLastName());
-            employeeOptional.setBirthDate(employee.getBirthDate());
-            employeeOptional.setMatricule(
-                    MatriculeGenerator.generateMatricule(
-                            getAllEmployees().size() == 0 ? 0 : getAllEmployees().size()+1
-                    )
-            );
-            employeeOptional.setEmplImg(employee.getEmplImg());
-            return employeeRepository.save(employeeOptional);
-        } else {
+    public Employee crupdateEmployee(String matricule,String name,String lastName,String birthDate,byte[] image){
+        Employee employee = getByMatricule(matricule);
+        employee.setFirstName(name);
+        employee.setLastName(lastName);
+        employee.setBirthDate(birthDate);
+        employee.setEmplImg(image);
         return employeeRepository.save(employee);
         }
-    }
 }

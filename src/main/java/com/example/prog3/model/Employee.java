@@ -12,18 +12,18 @@ import lombok.*;
 @Entity
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    public String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public String firstName;
+    private String firstName;
 
-    public String lastName;
+    private String lastName;
 
-    public String birthDate;
+    private String birthDate;
 
     @Column(unique = true,nullable = false)
-    public String matricule;
+    private String matricule;
 
     @Lob
-    public byte[] emplImg;
+    private byte[] emplImg;
 }

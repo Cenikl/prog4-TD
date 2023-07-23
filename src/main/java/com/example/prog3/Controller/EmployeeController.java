@@ -50,7 +50,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/formEmployee/image/{id}")
-    public ResponseEntity<byte[]> showImage(@PathVariable String id) {
+    public ResponseEntity<byte[]> showImage(@PathVariable Long id) {
         Optional<Employee> employeeOptional = employeeService.getById(id);
         byte[] imageData = employeeOptional.get().getEmplImg();
         HttpHeaders header = new HttpHeaders();
@@ -71,26 +71,14 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmp/{matricule}")
-    public String upEmployee(@PathVariable String matricule,@RequestParam("Img") MultipartFile file, HttpServletRequest request){
-        Employee employee = employeeService.getByMatricule(matricule);
-        String name = request.getParameter("name") == "" ? employee.getFirstName() : request.getParameter("name");
-        String lastName = request.getParameter("lastName") == "" ? employee.getLastName() : request.getParameter("lastName");
-        String birthDate = request.getParameter("birthDate") == "" ? employee.getBirthDate() : request.getParameter("birthDate");
-        try{
-            if(!file.isEmpty()){
+    public String upEmployee(
+            @PathVariable String matricule,
+            @RequestParam("Img") MultipartFile file,
+            @RequestParam("name") String name ,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("birthDate") String birthDate) throws IOException {
                 byte[] fileData = file.getBytes();
-                Employee empl = new Employee();
-                empl.setFirstName(name);
-                empl.setLastName(lastName);
-                empl.setMatricule(matricule);
-                empl.setBirthDate(birthDate);
-                empl.setEmplImg(fileData);
-                employeeService.crupdateEmployee(empl);
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,fileData);
         return "redirect:/index";
     }
-
 }
