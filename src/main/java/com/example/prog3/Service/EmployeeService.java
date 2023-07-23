@@ -4,13 +4,10 @@ import com.example.prog3.model.Employee;
 import com.example.prog3.Repository.EmployeeRepository;
 import com.example.prog3.utils.MatriculeGenerator;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -45,6 +42,48 @@ public class EmployeeService {
             }
         }
         return filteredEmployees;
+    }
+
+    public void sortEmployees(List<Employee> employees, String sort){
+        switch (sort) {
+            case "firstNameAsc":
+                Collections.sort(employees, (e1,e2) -> e2.getFirstName().compareToIgnoreCase(e1.getFirstName()));
+                break;
+            case "firstNameDesc":
+                Collections.sort(employees, (e1,e2) -> e2.getFirstName().compareToIgnoreCase(e1.getFirstName()));
+            case "lastNameAsc":
+                Collections.sort(employees, (e1,e2) -> e1.getLastName().compareToIgnoreCase(e2.getLastName()));
+                break;
+            case "lastNameDesc":
+                Collections.sort(employees, (e1,e2) -> e2.getLastName().compareToIgnoreCase(e1.getLastName()));
+                break;
+            case "genderAsc":
+                Collections.sort(employees, (e1,e2) -> e1.getSex().toString().compareToIgnoreCase(e2.getSex().toString()));
+                break;
+            case "genderDesc":
+                Collections.sort(employees, (e1,e2) -> e2.getSex().toString().compareToIgnoreCase(e1.getSex().toString()));
+                break;
+            case "roleAsc":
+                Collections.sort(employees, (e1,e2) -> e1.getRole().compareToIgnoreCase(e2.getRole()));
+                break;
+            case "roleDesc":
+                Collections.sort(employees, (e1,e2) -> e2.getRole().compareToIgnoreCase(e1.getRole()));
+                break;
+            case "eDateAsc":
+                Collections.sort(employees, (e1,e2) -> e1.getEmployementDate().compareToIgnoreCase(e2.getEmployementDate()));
+                break;
+            case "eDateDesc":
+                Collections.sort(employees, (e1,e2) -> e2.getEmployementDate().compareToIgnoreCase(e1.getEmployementDate()));
+                break;
+            case "dDateAsc":
+                Collections.sort(employees, (e1,e2) -> e1.getDepartureDate().compareToIgnoreCase(e2.getDepartureDate()));
+                break;
+            case "dDateDesc":
+                Collections.sort(employees, (e1,e2) -> e2.getDepartureDate().compareToIgnoreCase(e1.getDepartureDate()));
+                break;
+            default:
+                return;
+        }
     }
 
     public Employee createEmployee(

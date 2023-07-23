@@ -39,19 +39,37 @@
     <table>
         <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>
+                <a th:href="@{|/index?sort=firstNameDesc|}" th:text="FirstNameAsc"></a>
+                <a th:href="@{|/index?sort=firstNameAsc|}" th:text="FirstNameDesc"></a>
+            </th>
+            <th>
+                <a th:href="@{|/index?sort=lastNameAsc|}" th:text="lastNameAsc"></a>
+                <a th:href="@{|/index?sort=lastNameDesc|}" th:text="lastNameDesc"></a>
+            </th>
             <th>Birth Date</th>
             <th>Matricule</th>
-            <th>Gender</th>
+            <th>
+                <a th:href="@{|/index?sort=genderAsc|}" th:text="GenderAsc"></a>
+                <a th:href="@{|/index?sort=genderDesc|}" th:text="GenderDesc"></a>
+            </th>
             <th>Csp</th>
             <th>Address</th>
             <th>Email Professionel</th>
             <th>Email Personnel</th>
-            <th>Fonction</th>
+            <th>
+                <a th:href="@{|/index?sort=roleAsc|}" th:text="roleAsc"></a>
+                <a th:href="@{|/index?sort=roleDesc|}" th:text="roleDesc"></a>
+            </th>
             <th>Nombre d'Enfants</th>
-            <th>Employement Date</th>
-            <th>Departure Date</th>
+            <th>
+                <a th:href="@{|/index?sort=dDateAsc|}" th:text="dDateAsc"></a>
+                <a th:href="@{|/index?sort=dDateDesc|}" th:text="dDateDesc"></a>
+            </th>
+            <th>
+                <a th:href="@{|/index?sort=eDateAsc|}" th:text="eDateAsc"></a>
+                <a th:href="@{|/index?sort=eDateDesc|}" th:text="eDateDesc"></a>
+            </th>
             <th>Cnaps</th>
             <th>Phone Number</th>
             <th>CIN</th>

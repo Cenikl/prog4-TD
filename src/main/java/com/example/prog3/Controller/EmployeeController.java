@@ -35,8 +35,13 @@ public class EmployeeController {
             @RequestParam(value = "role",required = false) String role,
             @RequestParam(value = "employementDate",required = false) String eDate,
             @RequestParam(value = "departureDate",required = false) String dDate,
+            @RequestParam(value = "sort",required = false) String sort,
             Model model){
-        model.addAttribute("employees",employeeService.filterEmployees(name,lastName,sex,role,eDate,dDate));
+        List<Employee> employeeList = employeeService.filterEmployees(name,lastName,sex,role,eDate,dDate);
+        if(sort != null){
+            employeeService.sortEmployees(employeeList,sort);
+        }
+        model.addAttribute("employees",employeeList);
         return "index";
     }
 
