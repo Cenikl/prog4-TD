@@ -22,6 +22,18 @@
             <th>Last Name</th>
             <th>Birth Date</th>
             <th>Matricule</th>
+            <th>Gender</th>
+            <th>Csp</th>
+            <th>Address</th>
+            <th>Email Professionel</th>
+            <th>Email Personnel</th>
+            <th>Fonction</th>
+            <th>Nombre d'Enfants</th>
+            <th>Employement Date</th>
+            <th>Departure Date</th>
+            <th>Cnaps</th>
+            <th>Phone Number</th>
+            <th>CIN</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -31,6 +43,28 @@
                 <td th:text="${employee.lastName}" />
                 <td th:text="${employee.birthDate}" />
                 <td th:text="${employee.matricule}" />
+                <td th:text="${employee.sex}" />
+                <td th:text="${employee.csp}" />
+                <td th:text="${employee.address}" />
+                <td th:text="${employee.emailPro}" />
+                <td th:text="${employee.emailPerso}" />
+                <td th:text="${employee.role}" />
+                <td th:text="${employee.child}" />
+                <td th:text="${employee.employementDate}" />
+                <td th:text="${employee.departureDate}" />
+                <td th:text="${employee.cnaps}" />
+                <td>
+                    <ul>
+                        <li th:each="test : ${employee.phones}" th:text="${test.phoneNumber}"></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li th:text="${employee.cin.cinNumber}"></li>
+                        <li th:text="${employee.cin.issueDate}"></li>
+                        <li th:text="${employee.cin.issueLocation}"></li>
+                    </ul>
+                </td>
                 <td>
                     <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}" class="cheking">Check</a>
                     <button class="deleting">Delete</button>

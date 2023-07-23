@@ -22,6 +22,56 @@
                         <label th:text="Image"/></td>
                         <input type="file" name="testImg"/>
 
+                        <label for="genderChoose">Choose a gender :</label>
+                        <select id="genderChoose" name="gender">
+                                <option value=""></option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                        </select>
+
+                        <label for="cspChoose">Choose scp :</label>
+                        <select id="cspChoose" name="csp">
+                                <option value=""></option>
+                                <option value="M1">M1</option>
+                                <option value="M2">M2</option>
+                                <option value="OS1">OS1</option>
+                                <option value="OS2">OS2</option>
+                                <option value="OS3">OS3</option>
+                                <option value="OP1">OP1</option>
+                        </select>
+
+                        <label th:text="Address"/>
+                        <input type="text" name="address"/>
+
+                        <label th:text="EmailPro"/>
+                        <input type="email" name="emailPro"/>
+
+                        <label th:text="EmailPerso"/>
+                        <input type="email" name="emailPerso"/>
+
+                        <label th:text="Role"/>
+                        <input type="text" name="role"/>
+
+                        <label th:text="Children"/>
+                        <input type="number" name="child"/>
+
+                        <label th:text="EmployementDate"/>
+                        <input type="date" name="employementDate"/>
+
+                        <label th:text="DepartureDate"/>
+                        <input type="date" name="departureDate"/>
+
+                        <label>Numéro Cnaps :</label>
+                        <input type="text" name="cnaps"/>
+
+                        <label>Phone number (comma-separated):</label>
+                        <input type="text" name="phoneNumbers"/>
+
+                        <label th:text="Cin"/>
+                        <input type="text" name="cinNumber"/>
+                        <input type="date" name="cinDate"/>
+                        <input type="text" name="cinLocation"/>
+
                         <input type="submit" value="Submit" class="btnSubmit"/>
                 </form>
         </div>

@@ -26,23 +26,50 @@ public class EmployeeService {
     public Employee getByMatricule(String matricule){
         return employeeRepository.findByMatricule(matricule);
     }
+    public Employee getByEmailPro(String emailPro){return employeeRepository.findByEmailPro(emailPro);}
 
-    public Employee createEmployee(String firstName,String lastName,String birthDate,byte[] emplImg){
+    public Employee createEmployee(
+            String firstName,
+            String lastName,
+            String birthDate,
+            String sex,
+            String csp,
+            String address,
+            String emailPro,
+            String emailPerso,
+            String role,
+            Integer child,
+            String eDate,
+            String dDate,
+            String cnaps,
+            byte[] emplImg){
         Employee employee = new Employee();
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
         employee.setBirthDate(birthDate);
         employee.setMatricule(MatriculeGenerator.generateMatricule(getAllEmployees().size() == 0 ? 0 : getAllEmployees().size()));
         employee.setEmplImg(emplImg);
+        employee.setSex(Employee.Sex.valueOf(sex));
+        employee.setCsp(Employee.Csp.valueOf(csp));
+        employee.setAddress(address);
+        employee.setEmailPro(emailPro);
+        employee.setEmailPerso(emailPerso);
+        employee.setRole(role);
+        employee.setChild(child);
+        employee.setEmployementDate(eDate);
+        employee.setDepartureDate(dDate);
+        employee.setCnaps(cnaps);
         return employeeRepository.save(employee);
     };
 
-    public Employee crupdateEmployee(String matricule,String name,String lastName,String birthDate,byte[] image){
+    public Employee crupdateEmployee(String matricule,String name,String lastName,String birthDate,String sex,String csp,byte[] image){
         Employee employee = getByMatricule(matricule);
         employee.setFirstName(name);
         employee.setLastName(lastName);
         employee.setBirthDate(birthDate);
         employee.setEmplImg(image);
+        employee.setSex(Employee.Sex.valueOf(sex));
+        employee.setCsp(Employee.Csp.valueOf(csp));
         return employeeRepository.save(employee);
         }
 }

@@ -22,6 +22,56 @@
             <label th:text="Image"/>
             <input type="file" name="Img"/>
 
+            <label for="genderChoose">Choose a gender :</label>
+            <select id="genderChoose" name="gender">
+                <option value=""></option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+
+            <label for="cspChoose">Choose a gender :</label>
+            <select id="cspChoose" name="csp">
+                <option value=""></option>
+                <option value="M1">M1</option>
+                <option value="M2">M2</option>
+                <option value="OS1">OS1</option>
+                <option value="OS2">OS2</option>
+                <option value="OS3">OS3</option>
+                <option value="OP1">OP1</option>
+            </select>
+
+            <label th:text="Address"/>
+            <input type="text" name="address" th:value="*{address}" required/>
+
+            <label th:text="EmailPro"/>
+            <input type="email" name="emailPro" th:value="*{emailPro}" required/>
+
+            <label th:text="EmailPerso"/>
+            <input type="email" name="emailPerso" th:value="*{emailPerso}" required/>
+
+            <label th:text="Role"/>
+            <input type="text" name="role" th:value="*{role}" required/>
+
+            <label th:text="Children"/>
+            <input type="number" name="child" th:value="*{child}" required/>
+
+            <label th:text="EmployementDate"/>
+            <input type="date" name="employementDate" th:value="*{employementDate}" required/>
+
+            <label th:text="DepartureDate"/>
+            <input type="date" name="departureDate" th:value="*{departureDate}" required/>
+
+            <label>Numéro Cnaps :</label>
+            <input type="text" name="Cnaps" th:value="*{cnaps}" required/>
+
+            <label>Phone number (comma-separated):</label>
+            <input type="text" name="phoneNumbers" th:value="*{phones.phoneNumber}" required/>
+
+            <label th:text="Cin"/>
+            <input type="text" name="cinNumber" th:value="*{cin.cinNumber}" required/>
+            <input type="date" name="cinDate" th:value="*{cin.issueDate}" required/>
+            <input type="text" name="cinLocation" th:value="*{cin.issueLocation}" required/>
+
             <input type="submit" value="Submit" class="btnSubmit"/></td>
         </form>
     </div>

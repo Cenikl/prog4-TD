@@ -29,6 +29,44 @@
 
         <label th:text="Matricule" />
         <p th:text="*{matricule}" />
+
+        <label th:text="Gender" />
+        <p th:text="*{sex}" />
+
+        <label th:text="Csp" />
+        <p th:text="*{csp}" />
+
+        <label th:text="Address" />
+        <p th:text="*{address}" />
+
+        <label th:text="EmailPro" />
+        <p th:text="*{emailPro}" />
+
+        <label th:text="EmailPerso" />
+        <p th:text="*{emailPerso}" />
+
+        <label th:text="Role" />
+        <p th:text="*{role}" />
+
+        <label th:text="Child" />
+        <p th:text="*{child}" />
+
+        <label th:text="EmployementDate" />
+        <p th:text="*{employementDate}" />
+
+        <label th:text="DepartureDate" />
+        <p th:text="*{departureDate}" />
+
+        <label th:text="Cnaps" />
+        <p th:text="*{cnaps}" />
+
+        <label th:text="PhoneNumber" />
+        <p th:each="test : ${employee.phones}" th:text="${test.phoneNumber}"/>
+
+        <label th:text="CIN" />
+        <p th:text="${employee.cin.cinNumber}" />
+        <p th:text="${employee.cin.issueDate}" />
+        <p th:text="${employee.cin.issueLocation}" />
     </div>
 </div>
 </body>

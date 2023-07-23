@@ -1,5 +1,7 @@
 package com.example.prog3.Controller;
 
+import com.example.prog3.Service.CinService;
+import com.example.prog3.Service.PhoneService;
 import com.example.prog3.model.Employee;
 import com.example.prog3.Service.EmployeeService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +22,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class EmployeeController {
 
-    public EmployeeService employeeService;
+    private final EmployeeService employeeService;
+    private final PhoneService phoneService;
+    private final CinService cinService;
 
     @GetMapping("/index")
     public String index(Model model){
@@ -33,13 +37,25 @@ public class EmployeeController {
             @RequestParam("testImg") MultipartFile file,
             @RequestParam("name") String name,
             @RequestParam("lastName") String lastName,
-            @RequestParam("birthDate") String birthDate) throws IOException {
-        if(!file.isEmpty()){
-                byte[] fileData = file.getBytes();
-                employeeService.createEmployee(name,lastName,birthDate,fileData);
-            } else {
-            employeeService.createEmployee(name,lastName,birthDate,null);
-        }
+            @RequestParam("birthDate") String birthDate,
+            @RequestParam("gender") String sex,
+            @RequestParam("csp") String csp,
+            @RequestParam("address") String address,
+            @RequestParam("emailPro") String emailPro,
+            @RequestParam("emailPerso") String emailPerso,
+            @RequestParam("role") String role,
+            @RequestParam("child") Integer child,
+            @RequestParam("employementDate") String eDate,
+            @RequestParam("departureDate") String dDate,
+            @RequestParam("cnaps") String cnaps,
+            @RequestParam("phoneNumbers") String phoneNumbers,
+            @RequestParam("cinNumber") String cinNumber,
+            @RequestParam("cinDate") String cinDate,
+            @RequestParam("cinLocation") String cinLocation) throws IOException {
+        byte[] fileData = file.getBytes();
+        employeeService.createEmployee(name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,fileData);
+        phoneService.createPhoneNumber(phoneNumbers,employeeService.getByEmailPro(emailPro));
+        cinService.createCin(cinNumber,cinDate,cinLocation,employeeService.getByEmailPro(emailPro));
         return "redirect:/index";
     }
 
@@ -76,9 +92,11 @@ public class EmployeeController {
             @RequestParam("Img") MultipartFile file,
             @RequestParam("name") String name ,
             @RequestParam("lastName") String lastName,
-            @RequestParam("birthDate") String birthDate) throws IOException {
+            @RequestParam("gender") String sex,
+            @RequestParam("birthDate") String birthDate,
+            @RequestParam("csp") String csp) throws IOException {
                 byte[] fileData = file.getBytes();
-                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,fileData);
+                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,fileData);
         return "redirect:/index";
     }
 }
