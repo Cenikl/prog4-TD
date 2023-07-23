@@ -4,7 +4,9 @@ import com.example.prog3.Service.CinService;
 import com.example.prog3.Service.PhoneService;
 import com.example.prog3.model.Employee;
 import com.example.prog3.Service.EmployeeService;
+import com.example.prog3.model.Phone;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -43,6 +45,52 @@ public class EmployeeController {
         }
         model.addAttribute("employees",employeeList);
         return "index";
+    }
+
+    @GetMapping("/index/exportCsv")
+    public void getCsv(
+            @RequestParam(value = "name",required = false) String name,
+            @RequestParam(value = "lastName",required = false) String lastName,
+            @RequestParam(value = "gender",required = false) String sex,
+            @RequestParam(value = "role",required = false) String role,
+            @RequestParam(value = "employementDate",required = false) String eDate,
+            @RequestParam(value = "departureDate",required = false) String dDate,
+            @RequestParam(value = "sort",required = false) String sort,
+            HttpServletResponse response){
+        List<Employee> employees = employeeService.filterEmployees(name,lastName,sex,role,eDate,dDate);
+        if(sort != null){
+            employeeService.sortEmployees(employees,sort);
+        }
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename\"employees.csv\"");
+        try (OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream())) {
+            writer.write("First Name,Last Name,Birth Date,Matricule,Gender,Csp,Address,Email Professionel,Email Personnel,Fonction,Nombres dEnfants,Employement Date,Departure Date,Numéro Cnaps,Telephone,Numéro Cin\n");
+            for (Employee employee: employees){
+                String numbers = "";
+                for(Phone phone: phoneService.getAllByEmployee(employee)){
+                    numbers += ","+phone.getPhoneNumber();
+                }
+                writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+                        employee.getFirstName(),
+                        employee.getLastName(),
+                        employee.getBirthDate(),
+                        employee.getMatricule(),
+                        employee.getSex(),
+                        employee.getCsp(),
+                        employee.getAddress(),
+                        employee.getEmailPro(),
+                        employee.getEmailPerso(),
+                        employee.getRole(),
+                        employee.getChild(),
+                        employee.getEmployementDate(),
+                        employee.getDepartureDate(),
+                        employee.getCnaps(),
+                        numbers,
+                        employee.getCin().getCinNumber()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @PostMapping("/saveEmployee")

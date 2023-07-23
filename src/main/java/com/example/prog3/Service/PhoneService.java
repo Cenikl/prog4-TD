@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 @Transactional
@@ -14,6 +16,8 @@ public class PhoneService {
     private final PhoneRepository repository;
 
     public Phone getByEmployee(Employee employee){return repository.findByPhoneEmployee(employee);}
+
+    public List<Phone> getAllByEmployee(Employee employee){return repository.findPhonesByPhoneEmployee(employee);}
 
     public void createPhoneNumber(String phoneNumbers, Employee employee){
         Phone phone = new Phone();

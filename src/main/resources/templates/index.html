@@ -10,6 +10,7 @@
     <h4>Employee's Exercice</h4>
     <div class="firstPart">
         <a class="goCreate" href="http://localhost:8080/form">Create an employee</a>
+        <a class="goCreate" th:href="@{/index/exportCsv}" download="employees.csv">Export as CSV</a>
     </div>
     <form th:action="@{/index}" method="get">
         <label th:text="FirstName"/>
