@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,8 +28,15 @@ public class EmployeeController {
     private final CinService cinService;
 
     @GetMapping("/index")
-    public String index(Model model){
-        model.addAttribute("employees",employeeService.getAllEmployees());
+    public String index(
+            @RequestParam(value = "name",required = false) String name,
+            @RequestParam(value = "lastName",required = false) String lastName,
+            @RequestParam(value = "gender",required = false) String sex,
+            @RequestParam(value = "role",required = false) String role,
+            @RequestParam(value = "employementDate",required = false) String eDate,
+            @RequestParam(value = "departureDate",required = false) String dDate,
+            Model model){
+        model.addAttribute("employees",employeeService.filterEmployees(name,lastName,sex,role,eDate,dDate));
         return "index";
     }
 

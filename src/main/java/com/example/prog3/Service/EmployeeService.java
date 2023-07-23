@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,24 @@ public class EmployeeService {
         return employeeRepository.findByMatricule(matricule);
     }
     public Employee getByEmailPro(String emailPro){return employeeRepository.findByEmailPro(emailPro);}
+
+    public List<Employee> filterEmployees(String name,String lastName,String sex,String fonction,String eDate,String dDate){
+        List<Employee> allEmployees = getAllEmployees();
+        List<Employee> filteredEmployees = new ArrayList<>();
+
+        for (Employee employee: allEmployees) {
+            if(
+                    (name == null || employee.getFirstName().contains(name))
+                    && (lastName == null || employee.getLastName().contains(lastName))
+                    && (sex == null || employee.getSex().toString().contains(sex))
+                    && (fonction == null || employee.getRole().contains(fonction))
+                    && (eDate == null || employee.getEmployementDate().contains(eDate))
+                    && (dDate == null || employee.getDepartureDate().contains(dDate)))   {
+                filteredEmployees.add(employee);
+            }
+        }
+        return filteredEmployees;
+    }
 
     public Employee createEmployee(
             String firstName,
