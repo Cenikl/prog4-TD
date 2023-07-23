@@ -11,13 +11,13 @@
         <a class="goUpdate" th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}">Return to employee's information</a>
         <form action="#" th:action="@{/updateEmp/{matricule}(matricule=${employee.matricule})}"  method="post" enctype="multipart/form-data">
             <label th:text="FirstName"/>
-            <input type="text" name="name" th:placeholder="*{firstName}"/>
+            <input type="text" name="name" th:value="*{firstName}" required/>
 
             <label th:text="LastName"/>
-            <input type="text" name="lastName" th:placeholder="*{lastName}"/>
+            <input type="text" name="lastName" th:value="*{lastName}" required/>
 
             <label th:text="BirthDate"/>
-            <input type="date" name="birthDate" th:placeholder="*{birthDate}"/>
+            <input type="date" name="birthDate" th:value="*{birthDate}" required/>
 
             <label th:text="Image"/>
             <input type="file" name="Img"/>
@@ -56,20 +56,20 @@
             <input type="number" name="child" th:value="*{child}" required/>
 
             <label th:text="EmployementDate"/>
-            <input type="date" name="employementDate" th:value="*{employementDate}" required/>
+            <input type="date" name="employementDate" th:value="*{employementDate}"/>
 
             <label th:text="DepartureDate"/>
-            <input type="date" name="departureDate" th:value="*{departureDate}" required/>
+            <input type="date" name="departureDate" th:value="*{departureDate}"/>
 
             <label>Numéro Cnaps :</label>
-            <input type="text" name="Cnaps" th:value="*{cnaps}" required/>
+            <input type="text" name="cnaps" th:value="*{cnaps}" required/>
 
             <label>Phone number (comma-separated):</label>
-            <input type="text" name="phoneNumbers" th:value="*{phones.phoneNumber}" required/>
+            <input type="text" name="phoneNumbers" required/>
 
             <label th:text="Cin"/>
             <input type="text" name="cinNumber" th:value="*{cin.cinNumber}" required/>
-            <input type="date" name="cinDate" th:value="*{cin.issueDate}" required/>
+            <input type="date" name="cinDate" th:value="*{cin.issueDate}"/>
             <input type="text" name="cinLocation" th:value="*{cin.issueLocation}" required/>
 
             <input type="submit" value="Submit" class="btnSubmit"/></td>

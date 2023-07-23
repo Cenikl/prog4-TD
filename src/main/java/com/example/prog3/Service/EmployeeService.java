@@ -62,14 +62,37 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     };
 
-    public Employee crupdateEmployee(String matricule,String name,String lastName,String birthDate,String sex,String csp,byte[] image){
+    public Employee crupdateEmployee(
+            String matricule,
+            String name,
+            String lastName,
+            String birthDate,
+            String sex,
+            String csp,
+            String address,
+            String emailPro,
+            String emailPerso,
+            String role,
+            Integer child,
+            String eDate,
+            String dDate,
+            String cnaps,
+            byte[] image){
         Employee employee = getByMatricule(matricule);
+        employee.setCnaps(cnaps);
         employee.setFirstName(name);
         employee.setLastName(lastName);
         employee.setBirthDate(birthDate);
         employee.setEmplImg(image);
         employee.setSex(Employee.Sex.valueOf(sex));
         employee.setCsp(Employee.Csp.valueOf(csp));
+        employee.setAddress(address);
+        employee.setEmailPro(emailPro);
+        employee.setEmailPerso(emailPerso);
+        employee.setRole(role);
+        employee.setChild(child);
+        employee.setEmployementDate(eDate);
+        employee.setDepartureDate(dDate);
         return employeeRepository.save(employee);
         }
 }

@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class PhoneService {
     private final PhoneRepository repository;
 
+    public Phone getByEmployee(Employee employee){return repository.findByPhoneEmployee(employee);}
+
     public void createPhoneNumber(String phoneNumbers, Employee employee){
         Phone phone = new Phone();
         phone.setPhoneEmployee(employee);
@@ -23,5 +25,17 @@ public class PhoneService {
         }
     }
 
-    public void updatePhoneNumber(String phoneNumbers){}
+    public void updatePhoneNumber(String phoneNumbers,Employee employee){
+        if(phoneNumbers == "" || phoneNumbers == null){
+            //do nothing
+        }else {
+            Phone phone = new Phone();
+            phone.setPhoneEmployee(employee);
+            String[] numberList = phoneNumbers.split(",");
+            for (String phoneNumber : numberList) {
+                phone.setPhoneNumber(phoneNumber);
+                repository.save(phone);
+            }
+        }
+    }
 }

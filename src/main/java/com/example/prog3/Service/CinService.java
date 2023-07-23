@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CinService {
     private final CinRepository repository;
 
+    public Cin getByEmployee(Employee employee){return repository.findByCinEmployee(employee);}
     public void createCin(String cinNumber, String cinDate, String cinLocation, Employee employee){
         Cin cin = new Cin();
         cin.setCinNumber(cinNumber);
@@ -21,7 +22,11 @@ public class CinService {
         cin.setCinEmployee(employee);
         repository.save(cin);
     }
-
-
-    public void updateCin(){}
+    public void updateCin(Employee employee,String cinNumber,String cinDate,String cinLocation){
+        Cin cin = getByEmployee(employee);
+        cin.setCinNumber(cinNumber);
+        cin.setIssueDate(cinDate);
+        cin.setIssueLocation(cinLocation);
+        repository.save(cin);
+    }
 }

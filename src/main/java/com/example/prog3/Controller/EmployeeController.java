@@ -94,9 +94,23 @@ public class EmployeeController {
             @RequestParam("lastName") String lastName,
             @RequestParam("gender") String sex,
             @RequestParam("birthDate") String birthDate,
-            @RequestParam("csp") String csp) throws IOException {
+            @RequestParam("csp") String csp,
+            @RequestParam("address") String address,
+            @RequestParam("emailPro") String emailPro,
+            @RequestParam("emailPerso") String emailPerso,
+            @RequestParam("role") String role,
+            @RequestParam("child") Integer child,
+            @RequestParam("employementDate") String eDate,
+            @RequestParam("departureDate") String dDate,
+            @RequestParam("cnaps") String cnaps,
+            @RequestParam("phoneNumbers") String phoneNumbers,
+            @RequestParam("cinNumber") String cinNumber,
+            @RequestParam("cinDate") String cinDate,
+            @RequestParam("cinLocation") String cinLocation) throws IOException {
                 byte[] fileData = file.getBytes();
-                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,fileData);
+                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,fileData);
+                phoneService.updatePhoneNumber(phoneNumbers,employeeService.getByMatricule(matricule));
+                cinService.updateCin(employeeService.getByMatricule(matricule),cinNumber,cinDate,cinLocation);
         return "redirect:/index";
     }
 }
