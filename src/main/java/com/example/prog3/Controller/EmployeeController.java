@@ -4,9 +4,10 @@ import com.example.prog3.Service.CinService;
 import com.example.prog3.Service.PhoneService;
 import com.example.prog3.model.Employee;
 import com.example.prog3.Service.EmployeeService;
+import com.example.prog3.model.Enterprise;
 import com.example.prog3.model.Phone;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +30,18 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final PhoneService phoneService;
     private final CinService cinService;
+    private HttpSession httpSession;
+    public static Enterprise createEnterprise(HttpSession httpSession){
+        Enterprise enterprise = new Enterprise();
+        enterprise.setName("Hudson Company");
+        enterprise.setDescription("Construction company");
+        enterprise.setSlogan("It's Son and Done!");
+        enterprise.setEmail("hudson@gmail.com");
+        enterprise.setPhoneNumbers(Arrays.asList("0234567894","0231472589"));
+        enterprise.setLogoUrl("/images/zelda1.jpg");
+        httpSession.setAttribute("enterprise",enterprise);
+        return enterprise;
+    }
 
     @GetMapping("/index")
     public String index(
@@ -39,11 +53,14 @@ public class EmployeeController {
             @RequestParam(value = "departureDate",required = false) String dDate,
             @RequestParam(value = "sort",required = false) String sort,
             Model model){
+        createEnterprise(httpSession);
+        Enterprise enterprise = (Enterprise) httpSession.getAttribute("enterprise");
         List<Employee> employeeList = employeeService.filterEmployees(name,lastName,sex,role,eDate,dDate);
         if(sort != null){
             employeeService.sortEmployees(employeeList,sort);
         }
         model.addAttribute("employees",employeeList);
+        model.addAttribute("enterprise",enterprise);
         return "index";
     }
 
@@ -122,7 +139,9 @@ public class EmployeeController {
 
     @GetMapping("/form")
     public String form(@ModelAttribute Employee employee, Model model){
+        Enterprise enterprise = (Enterprise) httpSession.getAttribute("enterprise");
         model.addAttribute("employee", new Employee());
+        model.addAttribute("enterprise",enterprise);
         return "form";
     }
 
@@ -137,13 +156,17 @@ public class EmployeeController {
 
     @GetMapping("/updateEmployee/{matricule}")
     public String updateEmployee(@PathVariable String matricule,Model model){
+        Enterprise enterprise = (Enterprise) httpSession.getAttribute("enterprise");
         model.addAttribute("employee",employeeService.getByMatricule(matricule));
+        model.addAttribute("enterprise",enterprise);
         return "updateEmployee";
     }
 
     @GetMapping("/formEmployee/{matricule}")
     public String formEmployee(@PathVariable String matricule,Model model){
+        Enterprise enterprise = (Enterprise) httpSession.getAttribute("enterprise");
         model.addAttribute("employee",employeeService.getByMatricule(matricule));
+        model.addAttribute("enterprise",enterprise);
         return "formEmployee";
     }
 

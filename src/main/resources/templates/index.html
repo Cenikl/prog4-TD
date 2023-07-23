@@ -7,7 +7,8 @@
 </head>
 <body>
 <div class="mainBody">
-    <h4>Employee's Exercice</h4>
+    <h4 th:text="${enterprise.name}"></h4>
+    <img th:src="${enterprise.logoUrl}" alt="Logo"/>
     <div class="firstPart">
         <a class="goCreate" href="http://localhost:8080/form">Create an employee</a>
         <a class="goCreate" th:href="@{/index/exportCsv}" download="employees.csv">Export as CSV</a>
