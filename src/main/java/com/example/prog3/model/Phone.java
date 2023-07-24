@@ -19,7 +19,11 @@ public class Phone {
     private String phoneNumber;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phone_employee", referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "phone_employee", referencedColumnName = "id")
     private Employee phoneEmployee;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "phone_enterprise", referencedColumnName = "id")
+    private Enterprise phoneEnterprise;
 
 }

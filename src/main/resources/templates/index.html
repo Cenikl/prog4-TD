@@ -8,10 +8,13 @@
 <body>
 <div class="mainBody">
     <div class="con2">
+        <!--
         <div class="container">
         <img th:src="${enterprise.logoUrl}" alt="Logo"/>
         </div>
+
         <h4 th:text="${enterprise.name}"></h4>
+        -->
     </div>
     <div class="firstPart">
         <a class="goCreate" href="http://localhost:8080/form">Create an employee</a>
@@ -47,8 +50,8 @@
         <thead>
         <tr>
             <th class="coluning">
-                <a th:href="@{|/index?sort=firstNameDesc|}" th:text="FirstNameAsc" class="goSort"></a>
-                <a th:href="@{|/index?sort=firstNameAsc|}" th:text="FirstNameDesc" class="goSort"></a>
+                <a th:href="@{|/index?sort=firstNameAsc|}" th:text="FirstNameAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=firstNameDesc|}" th:text="FirstNameDesc" class="goSort"></a>
             </th>
             <th>
                 <a th:href="@{|/index?sort=lastNameAsc|}" th:text="lastNameAsc" class="goSort"></a>
@@ -104,13 +107,7 @@
                         <li th:each="test : ${employee.phones}" th:text="${test.phoneNumber}"></li>
                     </ul>
                 </td>
-                <td>
-                    <ul>
-                        <li th:text="${employee.cin.cinNumber}"></li>
-                        <li th:text="${employee.cin.issueDate}"></li>
-                        <li th:text="${employee.cin.issueLocation}"></li>
-                    </ul>
-                </td>
+                <td th:text="${employee.cin}" />
                 <td>
                     <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}" class="cheking">Check</a>
                     <button class="deleting">Delete</button>

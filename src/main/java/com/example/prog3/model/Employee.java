@@ -3,6 +3,7 @@ package com.example.prog3.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -17,8 +18,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String firstName;
 
+    @Column(nullable = false)
     private String lastName;
 
     @Enumerated(EnumType.STRING)
@@ -27,7 +30,8 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Csp csp;
 
-    private String birthDate;
+    @Column(nullable = false)
+    private LocalDate birthDate;
 
     @Column(unique = true,nullable = false)
     private String matricule;
@@ -48,22 +52,21 @@ public class Employee {
     private Integer child;
 
     @Column(nullable = false)
-    private String employementDate;
+    private LocalDate employementDate;
 
-    @Column(nullable = false)
-    private String departureDate;
+    private LocalDate departureDate;
 
     @Column(nullable = false)
     private String cnaps;
+
+    @Column(nullable = false)
+    private String cin;
 
     @Lob
     private byte[] emplImg;
 
     @OneToMany(mappedBy = "phoneEmployee")
     private List<Phone> phones;
-
-    @OneToOne(mappedBy = "cinEmployee")
-    private Cin cin;
 
     public enum Sex{
         M,F

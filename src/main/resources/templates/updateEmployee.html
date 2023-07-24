@@ -29,7 +29,7 @@
                 <option value="F">Female</option>
             </select>
 
-            <label for="cspChoose">Choose a gender :</label>
+            <label for="cspChoose">Choose csp :</label>
             <select id="cspChoose" name="csp">
                 <option value=""></option>
                 <option value="M1">M1</option>
@@ -68,10 +68,7 @@
             <input type="text" name="phoneNumbers" required/>
 
             <label th:text="Cin"/>
-            <input type="text" name="cinNumber" th:value="*{cin.cinNumber}" required/>
-            <input type="date" name="cinDate" th:value="*{cin.issueDate}"/>
-            <input type="text" name="cinLocation" th:value="*{cin.issueLocation}" required/>
-
+            <input type="text" name="cinNumber" th:value="*{cin}" required/>
             <input type="submit" value="Submit" class="btnSubmit"/></td>
         </form>
     </div>

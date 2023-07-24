@@ -64,9 +64,7 @@
         <p th:each="test : ${employee.phones}" th:text="${test.phoneNumber}"/>
 
         <label th:text="CIN" />
-        <p th:text="${employee.cin.cinNumber}" />
-        <p th:text="${employee.cin.issueDate}" />
-        <p th:text="${employee.cin.issueLocation}" />
+        <p th:text="${employee.cin}" />
     </div>
 </div>
 </body>

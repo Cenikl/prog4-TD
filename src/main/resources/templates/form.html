@@ -11,13 +11,13 @@
                 <a class="goUpdate" th:href="@{/index}">Return to main menu</a>
                 <form action="#" th:action="@{/saveEmployee}" method="post" enctype="multipart/form-data">
                         <label th:text="FirstName"/>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" required/>
 
                         <label th:text="LastName"/>
-                        <input type="text" name="lastName" />
+                        <input type="text" name="lastName" required/>
 
                         <label th:text="BirthDate"/>
-                        <input type="date" name="birthDate"/>
+                        <input type="date" name="birthDate" required/>
 
                         <label th:text="Image"/></td>
                         <input type="file" name="testImg"/>
@@ -41,38 +41,34 @@
                         </select>
 
                         <label th:text="Address"/>
-                        <input type="text" name="address"/>
+                        <input type="text" name="address" required/>
 
                         <label th:text="EmailPro"/>
-                        <input type="email" name="emailPro"/>
+                        <input type="email" name="emailPro" required/>
 
                         <label th:text="EmailPerso"/>
-                        <input type="email" name="emailPerso"/>
+                        <input type="email" name="emailPerso" required/>
 
                         <label th:text="Role"/>
-                        <input type="text" name="role"/>
+                        <input type="text" name="role" required/>
 
                         <label th:text="Children"/>
-                        <input type="number" name="child"/>
+                        <input type="number" name="child"required/>
 
                         <label th:text="EmployementDate"/>
-                        <input type="date" name="employementDate"/>
+                        <input type="date" name="employementDate" required/>
 
                         <label th:text="DepartureDate"/>
-                        <input type="date" name="departureDate"/>
+                        <input type="date" name="departureDate" required/>
 
                         <label>Numéro Cnaps :</label>
-                        <input type="text" name="cnaps"/>
+                        <input type="text" name="cnaps" required/>
 
                         <label>Phone number (comma-separated):</label>
-                        <input type="text" name="phoneNumbers"/>
+                        <input type="text" name="phoneNumbers" required/>
 
-                        <label>Cin number :</label>
-                        <input type="text" name="cinNumber"/>
-                        <label>Cin issue date :</label>
-                        <input type="date" name="cinDate"/>
-                        <label>Cin issue location :</label>
-                        <input type="text" name="cinLocation"/>
+                        <label>Cin :</label>
+                        <input type="text" name="cinNumber" required/>
 
                         <input type="submit" value="Submit" class="btnSubmit"/>
                 </form>

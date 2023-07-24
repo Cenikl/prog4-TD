@@ -5,7 +5,7 @@ create table if not exists "employee"
     id serial constraint employee_id primary key ,
     first_name varchar not null,
     last_name varchar not null,
-    birth_date varchar not null,
+    birth_date date not null,
     sex sex not null,
     csp csp not null,
     matricule varchar not null constraint employee_matricule_unique unique,
@@ -14,8 +14,9 @@ create table if not exists "employee"
     email_perso varchar not null constraint email_perso_unique unique,
     "role" varchar not null,
     child integer,
-    employement_date varchar not null,
-    departure_date varchar,
-    cnaps varchar not null
+    employement_date date not null,
+    departure_date date,
+    cnaps varchar not null,
+    cin varchar not null,
     empl_img BYTEA
 );
