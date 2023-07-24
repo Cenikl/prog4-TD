@@ -7,70 +7,75 @@
 </head>
 <body>
 <div class="mainBody">
-    <h4 th:text="${enterprise.name}"></h4>
-    <img th:src="${enterprise.logoUrl}" alt="Logo"/>
+    <div class="con2">
+        <div class="container">
+        <img th:src="${enterprise.logoUrl}" alt="Logo"/>
+        </div>
+        <h4 th:text="${enterprise.name}"></h4>
+    </div>
     <div class="firstPart">
         <a class="goCreate" href="http://localhost:8080/form">Create an employee</a>
         <a class="goCreate" th:href="@{/index/exportCsv}" download="employees.csv">Export as CSV</a>
     </div>
     <form th:action="@{/index}" method="get">
-        <label th:text="FirstName"/>
-        <input type="text" name="name" class="search"/> <br>
+        <label th:text="FirstName" for="name"/>
+        <input type="text" id="name" name="name" class="search"/>
 
         <label th:text="LastName"/>
-        <input type="text" name="lastName" class="search"/> <br>
+        <input type="text" name="lastName" class="search"/>
 
         <label for="sex">Choose a gender :</label>
         <select id="sex" name="gender">
             <option value="">All</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
-        </select> <br>
+        </select>
 
         <label th:text="Role"/>
-        <input type="text" name="role" class="search"/> <br>
+        <input type="text" name="role" class="search"/>
 
         <label th:text="EmployementDate"/>
-        <input type="date" name="employementDate" class="search"/> <br>
+        <input type="date" name="employementDate" class="search"/>
 
         <label th:text="DepartureDate"/>
-        <input type="date" name="departureDate" class="search"/> <br>
+        <input type="date" name="departureDate" class="search"/>
 
         <button type="submit" class="btnSearch">Filter</button>
     </form>
+    <div class="contain">
     <table>
         <thead>
         <tr>
-            <th>
-                <a th:href="@{|/index?sort=firstNameDesc|}" th:text="FirstNameAsc"></a>
-                <a th:href="@{|/index?sort=firstNameAsc|}" th:text="FirstNameDesc"></a>
+            <th class="coluning">
+                <a th:href="@{|/index?sort=firstNameDesc|}" th:text="FirstNameAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=firstNameAsc|}" th:text="FirstNameDesc" class="goSort"></a>
             </th>
             <th>
-                <a th:href="@{|/index?sort=lastNameAsc|}" th:text="lastNameAsc"></a>
-                <a th:href="@{|/index?sort=lastNameDesc|}" th:text="lastNameDesc"></a>
+                <a th:href="@{|/index?sort=lastNameAsc|}" th:text="lastNameAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=lastNameDesc|}" th:text="lastNameDesc" class="goSort"></a>
             </th>
             <th>Birth Date</th>
             <th>Matricule</th>
-            <th>
-                <a th:href="@{|/index?sort=genderAsc|}" th:text="GenderAsc"></a>
-                <a th:href="@{|/index?sort=genderDesc|}" th:text="GenderDesc"></a>
+            <th class="coluning">
+                <a th:href="@{|/index?sort=genderAsc|}" th:text="GenderAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=genderDesc|}" th:text="GenderDesc" class="goSort"></a>
             </th>
             <th>Csp</th>
             <th>Address</th>
             <th>Email Professionel</th>
             <th>Email Personnel</th>
-            <th>
-                <a th:href="@{|/index?sort=roleAsc|}" th:text="roleAsc"></a>
-                <a th:href="@{|/index?sort=roleDesc|}" th:text="roleDesc"></a>
+            <th class="coluning">
+                <a th:href="@{|/index?sort=roleAsc|}" th:text="roleAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=roleDesc|}" th:text="roleDesc" class="goSort"></a>
             </th>
             <th>Nombre d'Enfants</th>
             <th>
-                <a th:href="@{|/index?sort=dDateAsc|}" th:text="dDateAsc"></a>
-                <a th:href="@{|/index?sort=dDateDesc|}" th:text="dDateDesc"></a>
+                <a th:href="@{|/index?sort=dDateAsc|}" th:text="dDateAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=dDateDesc|}" th:text="dDateDesc" class="goSort"></a>
             </th>
-            <th>
-                <a th:href="@{|/index?sort=eDateAsc|}" th:text="eDateAsc"></a>
-                <a th:href="@{|/index?sort=eDateDesc|}" th:text="eDateDesc"></a>
+            <th class="coluning">
+                <a th:href="@{|/index?sort=eDateAsc|}" th:text="eDateAsc" class="goSort"></a>
+                <a th:href="@{|/index?sort=eDateDesc|}" th:text="eDateDesc" class="goSort"></a>
             </th>
             <th>Cnaps</th>
             <th>Phone Number</th>
@@ -113,6 +118,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 </div>
 </body>
 </html>
