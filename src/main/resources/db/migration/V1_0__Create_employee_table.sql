@@ -18,5 +18,5 @@ create table if not exists "employee"
     departure_date date,
     cnaps varchar not null,
     cin varchar not null,
-    empl_img BYTEA
+    empl_img OID
 );

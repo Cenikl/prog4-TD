@@ -1,13 +1,11 @@
 package com.example.prog3.Controller;
 
+import com.example.prog3.Service.EmployeeService;
 import com.example.prog3.Service.EnterpriseService;
 import com.example.prog3.Service.PhoneService;
 import com.example.prog3.model.Employee;
-import com.example.prog3.Service.EmployeeService;
 import com.example.prog3.model.Enterprise;
-import com.example.prog3.model.Phone;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -21,16 +19,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
-public class EmployeeController {
+public class EmployeeController extends TokenController {
 
     private final EmployeeService employeeService;
     private final PhoneService phoneService;
+    private final EnterpriseService enterpriseService;
 
     @GetMapping("/index")
     public String index(
@@ -42,8 +40,10 @@ public class EmployeeController {
             @RequestParam(value = "departureDate",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dDate,
             @RequestParam(value = "sort",required = false) String sort,
             Model model){
+        Enterprise enterprise = enterpriseService.getEnterprise();
         List<Employee> employeeList = employeeService.getFilteredEmployees(name,lastName,sex,role,eDate,dDate,sort);
         model.addAttribute("employees",employeeList);
+        model.addAttribute("enterprise",enterprise);
         return "index";
     }
 
@@ -97,6 +97,14 @@ public class EmployeeController {
     public ResponseEntity<byte[]> showImage(@PathVariable Long id) {
         Optional<Employee> employeeOptional = employeeService.getById(id);
         byte[] imageData = employeeOptional.get().getEmplImg();
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imageData,header, HttpStatus.OK);
+    }
+    @GetMapping("/index/employee")
+    public ResponseEntity<byte[]> showImageE() {
+        Enterprise enterprise = enterpriseService.getEnterprise();
+        byte[] imageData = enterprise.getLogo();
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.IMAGE_JPEG);
         return new ResponseEntity<>(imageData,header, HttpStatus.OK);
