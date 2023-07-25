@@ -15,8 +15,9 @@
         <h4 th:text="${enterprise.name}"></h4>
     </div>
     <div class="firstPart">
-        <a class="goCreate" href="http://localhost:8080/form">Create an employee</a>
+        <a class="goCreate"  th:href="@{/enterprise}">Update Enterprise</a>
         <a class="goCreate" th:href="@{/index/exportCsv}" download="employees.csv">Export as CSV</a>
+        <a class="goCreate"  th:href="@{/form}">Create an employee</a>
     </div>
     <form th:action="@{/index}" method="get">
         <label th:text="FirstName" for="name"/>
