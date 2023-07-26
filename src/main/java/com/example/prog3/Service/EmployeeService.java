@@ -68,7 +68,7 @@ public class EmployeeService {
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
         return entityManager.createQuery(criteriaQuery).getResultList();
     }
-    public List<Employee> getFilteredEmployees(String firstName,String lastName,String sex,String role,LocalDate startDate, LocalDate endDate,String sort){
+    public List<Employee> getFilteredEmployees(String firstName,String lastName,String sex,String role,LocalDate startDate, LocalDate endDate,String countryCode,String sort){
         List<Employee> employees = new ArrayList<>();
         if(endDate == null){
             endDate = LocalDate.now();
@@ -84,6 +84,9 @@ public class EmployeeService {
         }
         if (startDate != null && endDate != null){
             employees.addAll(employeeRepository.findEmployeesByDateRange(startDate,endDate));
+        }
+        if (countryCode != null && !countryCode.isEmpty()){
+            employees.addAll(employeeRepository.findEmployeesByCountryCode(countryCode));
         }
 
         if(employees.isEmpty()){

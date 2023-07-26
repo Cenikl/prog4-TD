@@ -26,6 +26,7 @@ public class PhoneService {
             Phone phone = new Phone();
             phone.setPhoneEmployee(employee);
             phone.setPhoneNumber(phoneNumber);
+            phone.setCountryCode(phoneNumber.substring(0,4));
             repository.save(phone);
         }
     }
@@ -35,6 +36,7 @@ public class PhoneService {
             Phone phone = new Phone();
             phone.setPhoneEnterprise(enterprise);
             phone.setPhoneNumber(phoneNumber);
+            phone.setCountryCode(phoneNumber.substring(0,4));
             repository.save(phone);
         }
     }
@@ -47,6 +49,7 @@ public class PhoneService {
                 Phone phone = new Phone();
                 phone.setPhoneEmployee(employee);
                 phone.setPhoneNumber(phoneNumber);
+                phone.setCountryCode(phoneNumber.substring(0,4));
                 repository.save(phone);
             }
         }
@@ -60,6 +63,7 @@ public class PhoneService {
                 Phone phone = new Phone();
                 phone.setPhoneEnterprise(enterprise);
                 phone.setPhoneNumber(phoneNumber);
+                phone.setCountryCode(phoneNumber.substring(0,4));
                 repository.save(phone);
             }
         }

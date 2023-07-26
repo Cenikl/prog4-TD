@@ -27,4 +27,9 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
             "where ( cast(:startDate as date) is null or employement_date >= :startDate) "+
             "and ( cast(:endDate as date) is null or departure_date <= :endDate)", nativeQuery = true)
     List<Employee> findEmployeesByDateRange(LocalDate startDate,LocalDate endDate);
+
+    @Query(value = "select e.* from employee e "+
+            "JOIN phone p on e.id = p.phone_employee " +
+            "where (:countryCode is null or p.country_code = :countryCode) ", nativeQuery = true)
+    List<Employee> findEmployeesByCountryCode(String countryCode);
 }

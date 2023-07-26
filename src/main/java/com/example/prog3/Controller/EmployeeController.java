@@ -36,12 +36,13 @@ public class EmployeeController extends TokenController {
             @RequestParam(value = "lastName",required = false) String lastName,
             @RequestParam(value = "gender",required = false) String sex,
             @RequestParam(value = "role",required = false) String role,
+            @RequestParam(value = "cCode",required = false) String cCode,
             @RequestParam(value = "employementDate",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eDate,
             @RequestParam(value = "departureDate",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dDate,
             @RequestParam(value = "sort",required = false) String sort,
             Model model){
         Enterprise enterprise = enterpriseService.getEnterprise();
-        List<Employee> employeeList = employeeService.getFilteredEmployees(name,lastName,sex,role,eDate,dDate,sort);
+        List<Employee> employeeList = employeeService.getFilteredEmployees(name,lastName,sex,role,eDate,dDate,cCode,sort);
         model.addAttribute("employees",employeeList);
         model.addAttribute("enterprise",enterprise);
         return "index";
@@ -53,11 +54,12 @@ public class EmployeeController extends TokenController {
             @RequestParam(value = "lastName",required = false) String lastName,
             @RequestParam(value = "gender",required = false) String sex,
             @RequestParam(value = "role",required = false) String role,
+            @RequestParam(value = "cCode",required = false) String cCode,
             @RequestParam(value = "employementDate",required = false)@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eDate,
             @RequestParam(value = "departureDate",required = false)@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dDate,
             @RequestParam(value = "sort",required = false) String sort,
             HttpServletResponse response) throws IOException {
-        List<Employee> employees = employeeService.getFilteredEmployees(name,lastName,sex,role,eDate,dDate,sort);
+        List<Employee> employees = employeeService.getFilteredEmployees(name,lastName,sex,role,eDate,dDate,cCode,sort);
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", "attachment; filename\"employees.csv\"");
         employeeService.exportToCsv(employees,phoneService,response);
