@@ -18,6 +18,8 @@ public class Phone {
     @Column(unique = true,nullable = false)
     private String phoneNumber;
 
+
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "phone_employee", referencedColumnName = "id")
     private Employee phoneEmployee;

@@ -1,0 +1,1 @@
+alter table "phone" add column country_code varchar;
