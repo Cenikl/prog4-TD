@@ -70,29 +70,107 @@ public class EmployeeService {
     }
     public List<Employee> getFilteredEmployees(String firstName,String lastName,String sex,String role,LocalDate startDate, LocalDate endDate,String countryCode,String sort){
         List<Employee> employees = new ArrayList<>();
+        List<Employee> employeesMock = new ArrayList<>();
         if(endDate == null){
             endDate = LocalDate.now();
         }
         if(firstName != null && !firstName.isEmpty() || lastName != null && !lastName.isEmpty()){
             employees.addAll(findEmployeesByFirstNameAndLastName(firstName,lastName));
+            employeesMock.addAll(findEmployeesByFirstNameAndLastName(firstName,lastName));
         }
         if (sex != null && !sex.isEmpty()){
-            employees.addAll(employeeRepository.findBySex(Employee.Sex.valueOf(sex)));
+            if(!employees.isEmpty()){
+                for (Employee employee: employeesMock) {
+                    for (Employee employee1:employeeRepository.findBySex(Employee.Sex.valueOf(sex))){
+                        if(employee.getSex() != employee1.getSex()){
+                            employees.remove(employee);
+                        }
+                    }
+                }
+            } else employees.addAll(employeeRepository.findBySex(Employee.Sex.valueOf(sex)));
         }
         if (role != null && !role.isEmpty()){
-            employees.addAll(employeeRepository.findByRoleContainingIgnoreCase(role));
+            if(!employees.isEmpty()){
+                for (Employee employee: employeesMock) {
+                    for (Employee employee1:employeeRepository.findByRoleContainingIgnoreCase(role)){
+                        if(employee.getRole() != employee1.getRole()){
+                            employees.remove(employee);
+                        }
+                    }
+                }
+            } else employees.addAll(employeeRepository.findByRoleContainingIgnoreCase(role));
         }
         if (startDate != null && endDate != null){
-            employees.addAll(employeeRepository.findEmployeesByDateRange(startDate,endDate));
+            if(!employees.isEmpty()){
+                for (Employee employee: employeesMock) {
+                    for (Employee employee1:employeeRepository.findEmployeesByDateRange(startDate,endDate)){
+                        if(employee.getEmployementDate() != employee1.getEmployementDate() && employee.getDepartureDate() != employee1.getDepartureDate()) {
+                            employees.remove(employee);
+                        }
+                    }
+                }
+            } else employees.addAll(employeeRepository.findEmployeesByDateRange(startDate,endDate));
         }
         if (countryCode != null && !countryCode.isEmpty()){
-            employees.addAll(employeeRepository.findEmployeesByCountryCode(countryCode));
+            if(!employees.isEmpty()){
+                for (Employee employee: employeesMock) {
+                    for (Employee employee1:employeeRepository.findEmployeesByCountryCode(countryCode)){
+                        if(employee.getId() != employee1.getId()){
+                            employees.remove(employee);
+                        }
+                    }
+                }
+            } else employees.addAll(employeeRepository.findEmployeesByCountryCode(countryCode));
         }
 
-        if(employees.isEmpty()){
+        if(employees.isEmpty() && employeesMock.isEmpty()){
             return employeeRepository.findAll(sortEmployees(sort));
         }
+        if(sort != null && !sort.isEmpty()){
+            sortingCriteria(employees,sort);
+        }
         return employees;
+    }
+    public void sortingCriteria(List<Employee> employees,String sort){
+        if(Objects.equals(sort, "firstNameAsc")){
+            employees.sort(Comparator.comparing(Employee::getFirstName));
+        }
+        else if(Objects.equals(sort, "firstNameDesc")){
+            employees.sort(Comparator.comparing(Employee::getFirstName).reversed());
+        }
+        else if(Objects.equals(sort, "lastNameAsc")){
+            employees.sort(Comparator.comparing(Employee::getLastName));
+        }
+        else if(Objects.equals(sort, "lastNameDesc")){
+            employees.sort(Comparator.comparing(Employee::getLastName).reversed());
+        }
+        else if(Objects.equals(sort, "genderAsc")){
+            employees.sort(Comparator.comparing(Employee::getSex));
+        }
+        else if(Objects.equals(sort, "genderDesc")){
+            employees.sort(Comparator.comparing(Employee::getSex).reversed());
+        }
+        else if(Objects.equals(sort, "roleAsc")){
+            employees.sort(Comparator.comparing(Employee::getRole));
+        }
+        else if(Objects.equals(sort, "roleDesc")){
+            employees.sort(Comparator.comparing(Employee::getRole).reversed());
+        }
+        else if(Objects.equals(sort, "dDateAsc")){
+            employees.sort(Comparator.comparing(Employee::getDepartureDate));
+        }
+        else if(Objects.equals(sort, "dDateDesc")){
+            employees.sort(Comparator.comparing(Employee::getDepartureDate).reversed());
+        }
+        else if(Objects.equals(sort, "eDateAsc")){
+            employees.sort(Comparator.comparing(Employee::getEmployementDate));
+        }
+        else if(Objects.equals(sort, "eDateDesc")){
+            employees.sort(Comparator.comparing(Employee::getEmployementDate).reversed());
+        }
+        else{
+        employees.sort(Comparator.comparing(Employee::getId));
+        }
     }
 
     public Sort sortEmployees(String sort){

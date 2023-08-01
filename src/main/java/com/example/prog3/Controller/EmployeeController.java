@@ -5,6 +5,7 @@ import com.example.prog3.Service.EnterpriseService;
 import com.example.prog3.Service.PhoneService;
 import com.example.prog3.model.Employee;
 import com.example.prog3.model.Enterprise;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,11 +41,12 @@ public class EmployeeController extends TokenController {
             @RequestParam(value = "employementDate",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eDate,
             @RequestParam(value = "departureDate",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dDate,
             @RequestParam(value = "sort",required = false) String sort,
-            Model model){
+            Model model,HttpServletRequest request){
         Enterprise enterprise = enterpriseService.getEnterprise();
         List<Employee> employeeList = employeeService.getFilteredEmployees(name,lastName,sex,role,eDate,dDate,cCode,sort);
         model.addAttribute("employees",employeeList);
         model.addAttribute("enterprise",enterprise);
+        model.addAttribute("request", request);
         return "index";
     }
 
