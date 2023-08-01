@@ -1,6 +1,6 @@
 create table if not exists "phone"(
     id serial primary key,
-    phone_number varchar not null
+    phone_number varchar(10) not null
         constraint phone_number_unique unique,
     phone_employee bigint
         constraint fk_employee_id references employee(id),
