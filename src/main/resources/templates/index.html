@@ -45,8 +45,8 @@
         <thead>
         <tr>
             <th class="coluning">
-                <a th:href="${request.requestURL+'?'+request.queryString+'&'+'sort=firstNameAsc'}" th:text="FirstNameAsc" class="goSort"></a>
-                <a th:href="${request.requestURL+'?'+request.queryString+'&'+'sort=firstNameDesc'}"  th:text="FirstNameDesc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=firstNameAsc' : request.queryString+'&'+'sort=firstNameAsc') : '')}" th:text="FirstNameAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=firstNameDesc' : request.queryString+'&'+'sort=firstNameDesc') : '')}"  th:text="FirstNameDesc" class="goSort"></a>
             </th>
             <th>
                 <a th:href="@{|/index?sort=lastNameAsc|}" th:text="lastNameAsc" class="goSort"></a>
