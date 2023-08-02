@@ -61,7 +61,7 @@
         <p th:text="*{cnaps}" />
 
         <label th:text="PhoneNumber" />
-        <p th:each="test : ${employee.phones}" th:text="${test.phoneNumber}"/>
+        <p th:each="test : ${employee.phones}" th:text="${test.countryCode+test.phoneNumber}"/>
 
         <label th:text="CIN" />
         <p th:text="${employee.cin}" />

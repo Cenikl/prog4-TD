@@ -37,10 +37,11 @@ public class EnterpriseController extends TokenController{
             @RequestParam("nif") String nif,
             @RequestParam("stat") String stat,
             @RequestParam("rcs") String rcs,
+            @RequestParam("cCode") String cCode,
             @RequestParam("phoneNumbers") String phoneNumbers) throws IOException {
         byte[] fileData = file.getBytes();
         enterpriseService.updateEnterprise(name, desc, slogan, address, email, nif, stat, rcs,fileData);
-        phoneService.updatePhoneNumberEnterprise(phoneNumbers,enterpriseService.getEnterprise());
+        phoneService.updatePhoneNumberEnterprise(cCode,phoneNumbers,enterpriseService.getEnterprise());
         return "redirect:/index";
     }
 }
