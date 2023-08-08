@@ -1,13 +1,11 @@
 package com.example.prog3.Repository;
 
-import com.example.prog3.model.Employee;
-import com.example.prog3.model.Enterprise;
-import com.example.prog3.model.Phone;
+import com.example.prog3.model.last1.Employee;
+import com.example.prog3.model.last1.Enterprise;
+import com.example.prog3.model.last1.Phone;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository

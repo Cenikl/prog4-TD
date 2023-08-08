@@ -68,7 +68,7 @@
             <input type="text" name="cCode" required/>
 
             <label>Phone number (comma-separated):</label>
-            <input type="text" name="phoneNumbers" required/>
+            <input type="text" name="phoneNumbers" required minlength="10"/>
 
             <label th:text="Cin"/>
             <input type="text" name="cinNumber" th:value="*{cin}" required/>

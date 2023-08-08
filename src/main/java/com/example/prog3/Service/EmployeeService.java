@@ -1,8 +1,8 @@
 package com.example.prog3.Service;
 
-import com.example.prog3.model.Employee;
+import com.example.prog3.model.last1.Employee;
 import com.example.prog3.Repository.EmployeeRepository;
-import com.example.prog3.model.Phone;
+import com.example.prog3.model.last1.Phone;
 import com.example.prog3.utils.MatriculeGenerator;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

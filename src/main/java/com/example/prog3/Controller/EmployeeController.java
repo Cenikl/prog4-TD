@@ -3,8 +3,8 @@ package com.example.prog3.Controller;
 import com.example.prog3.Service.EmployeeService;
 import com.example.prog3.Service.EnterpriseService;
 import com.example.prog3.Service.PhoneService;
-import com.example.prog3.model.Employee;
-import com.example.prog3.model.Enterprise;
+import com.example.prog3.model.last1.Employee;
+import com.example.prog3.model.last1.Enterprise;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -87,6 +87,12 @@ public class EmployeeController extends TokenController {
             @RequestParam("phoneNumbers") String phoneNumbers,
             @RequestParam("cinNumber") String cinNumber) throws IOException {
         byte[] fileData = file.getBytes();
+        String[] numberList = phoneNumbers.split(",");
+        for (String phoneNumber : numberList) {
+            if(phoneNumber.length() != 10){
+                throw new IllegalArgumentException("Phone number need to be exactly 10");
+            }
+        }
         employeeService.createEmployee(name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData);
         phoneService.createPhoneNumberEmployee(cCode,phoneNumbers,employeeService.getByEmailPro(emailPro));
         return "redirect:/index";
@@ -148,6 +154,12 @@ public class EmployeeController extends TokenController {
             @RequestParam("phoneNumbers") String phoneNumbers,
             @RequestParam("cinNumber") String cinNumber) throws IOException {
                 byte[] fileData = file.getBytes();
+                String[] numberList = phoneNumbers.split(",");
+                for (String phoneNumber : numberList) {
+                    if(phoneNumber.length() != 10){
+                        throw new IllegalArgumentException("Phone number need to be exactly 10");
+                    }
+                }
                 employeeService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData);
                 phoneService.updatePhoneNumber(cCode,phoneNumbers,employeeService.getByMatricule(matricule));
         return "redirect:/index";

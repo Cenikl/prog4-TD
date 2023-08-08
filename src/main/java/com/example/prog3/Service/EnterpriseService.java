@@ -1,11 +1,9 @@
 package com.example.prog3.Service;
 
 import com.example.prog3.Repository.EnterpriseRepository;
-import com.example.prog3.model.Enterprise;
+import com.example.prog3.model.last1.Enterprise;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 @AllArgsConstructor

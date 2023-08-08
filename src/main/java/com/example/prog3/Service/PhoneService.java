@@ -1,11 +1,9 @@
 package com.example.prog3.Service;
 
-import com.example.prog3.Repository.EmployeeRepository;
-import com.example.prog3.Repository.EnterpriseRepository;
 import com.example.prog3.Repository.PhoneRepository;
-import com.example.prog3.model.Employee;
-import com.example.prog3.model.Enterprise;
-import com.example.prog3.model.Phone;
+import com.example.prog3.model.last1.Employee;
+import com.example.prog3.model.last1.Enterprise;
+import com.example.prog3.model.last1.Phone;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +23,6 @@ public class PhoneService {
         String[] numberList = phoneNumbers.split(",");
         List<Phone> phoneList = getAllByEmployee(employee);
         for (String phoneNumber : numberList) {
-            if(phoneNumber.length() == 10){
             Phone phone = new Phone();
             phone.setPhoneEmployee(employee);
             phone.setPhoneNumber(phoneNumber);
@@ -34,9 +31,6 @@ public class PhoneService {
             repository.save(phone);
             } else {
                 throw new IllegalArgumentException("Phone number already registered");
-            }
-            }else {
-                throw new IllegalArgumentException("Phone number to be exactly 10");
             }
         }
     }
@@ -61,7 +55,6 @@ public class PhoneService {
             String[] numberList = phoneNumbers.split(",");
             List<Phone> phoneList = getAllByEmployee(employee);
             for (String phoneNumber : numberList) {
-                if(phoneNumber.length() == 10){
                     Phone phone = new Phone();
                     phone.setPhoneEmployee(employee);
                     phone.setPhoneNumber(phoneNumber);
@@ -71,9 +64,6 @@ public class PhoneService {
                     } else {
                         throw new IllegalArgumentException("Phone number already registered");
                     }
-                }else {
-                    throw new IllegalArgumentException("Phone number to be exactly 10");
-                }
             }
         }
     }
@@ -84,20 +74,15 @@ public class PhoneService {
             String[] numberList = phoneNumbers.split(",");
             List<Phone> enterprisePhone = repository.findPhonesByPhoneEnterprise(enterprise);
             for (String phoneNumber : numberList) {
-                if(phoneNumber.length() == 10){
                 Phone phone = new Phone();
                 phone.setPhoneEnterprise(enterprise);
                 phone.setPhoneNumber(phoneNumber);
                 phone.setCountryCode(codeCountry);
-                if(!enterprisePhone.contains(phone)){
-                repository.save(phone);
-                }else {
-                    throw new IllegalArgumentException("Phone number already registred");
+                    if(!enterprisePhone.contains(phone)){
+                        repository.save(phone);
+                    }else
+                    {throw new IllegalArgumentException("Phone number already registred");}
                 }
-                }else{
-                    throw new IllegalArgumentException("Phone number needs to be exactly 10");
-                }
-            }
         }
     }
 }

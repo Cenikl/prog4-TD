@@ -1,4 +1,4 @@
-package com.example.prog3.model;
+package com.example.prog3.model.last1;
 
 import jakarta.persistence.*;
 import lombok.*;
