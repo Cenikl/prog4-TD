@@ -1,6 +1,6 @@
-package com.example.prog3.Service;
+package com.example.prog3.Service.last1;
 
-import com.example.prog3.Repository.EnterpriseRepository;
+import com.example.prog3.Repository.last1.EnterpriseRepository;
 import com.example.prog3.model.last1.Enterprise;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.prog3.Repository;
+package com.example.prog3.Repository.last1;
 
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.model.last1.Enterprise;

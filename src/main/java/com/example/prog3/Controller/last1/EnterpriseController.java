@@ -1,7 +1,8 @@
-package com.example.prog3.Controller;
+package com.example.prog3.Controller.last1;
 
-import com.example.prog3.Service.EnterpriseService;
-import com.example.prog3.Service.PhoneService;
+import com.example.prog3.Controller.TokenController;
+import com.example.prog3.Service.last1.EnterpriseService;
+import com.example.prog3.Service.last1.PhoneService;
 import com.example.prog3.model.last1.Enterprise;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 @Controller
 @AllArgsConstructor
-public class EnterpriseController extends TokenController{
+public class EnterpriseController extends TokenController {
     private EnterpriseService enterpriseService;
     private PhoneService phoneService;
 

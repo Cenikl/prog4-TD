@@ -1,7 +1,7 @@
-package com.example.prog3.Service;
+package com.example.prog3.Service.last1;
 
 import com.example.prog3.model.last1.Employee;
-import com.example.prog3.Repository.EmployeeRepository;
+import com.example.prog3.Repository.last1.EmployeeRepository;
 import com.example.prog3.model.last1.Phone;
 import com.example.prog3.utils.MatriculeGenerator;
 import jakarta.persistence.EntityManager;

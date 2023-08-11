@@ -1,7 +1,7 @@
 package com.example.prog3.Controller;
 
-import com.example.prog3.Service.EnterpriseService;
-import com.example.prog3.Service.UserService;
+import com.example.prog3.Service.last1.EnterpriseService;
+import com.example.prog3.Service.last1.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;

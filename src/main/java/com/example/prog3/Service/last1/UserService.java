@@ -1,6 +1,6 @@
-package com.example.prog3.Service;
+package com.example.prog3.Service.last1;
 
-import com.example.prog3.Repository.UserRepository;
+import com.example.prog3.Repository.last1.UserRepository;
 import com.example.prog3.model.last1.Users;
 import com.example.prog3.utils.TokenGeneration;
 import lombok.AllArgsConstructor;

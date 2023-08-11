@@ -1,6 +1,6 @@
-package com.example.prog3.Service;
+package com.example.prog3.Service.last1;
 
-import com.example.prog3.Repository.PhoneRepository;
+import com.example.prog3.Repository.last1.PhoneRepository;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.model.last1.Enterprise;
 import com.example.prog3.model.last1.Phone;

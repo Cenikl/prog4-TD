@@ -1,6 +1,6 @@
-package com.example.prog3.model.last1;
+package com.example.prog3.model.last2;
 
-import com.example.prog3.model.last2.Cnaps;
+import com.example.prog3.model.last1.Phone;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class Employee {
+public class Cnaps {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -66,8 +66,8 @@ public class Employee {
     @Lob
     private byte[] emplImg;
 
-    @OneToMany(mappedBy = "phoneEmployee")
-    private List<Phone> phones;
+    @Column(nullable = false)
+    private String endToEndId;
 
     public enum Sex{
         M,F
