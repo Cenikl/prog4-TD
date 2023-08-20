@@ -4,6 +4,7 @@ import com.example.prog3.Controller.TokenController;
 import com.example.prog3.Service.last1.EmployeeService;
 import com.example.prog3.Service.last1.EnterpriseService;
 import com.example.prog3.Service.last1.PhoneService;
+import com.example.prog3.Service.last2.CnapsService;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.model.last1.Enterprise;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class EmployeeController extends TokenController {
     private final EmployeeService employeeService;
     private final PhoneService phoneService;
     private final EnterpriseService enterpriseService;
+    private final CnapsService cnapsService;
 
     @GetMapping("/index")
     public String index(
@@ -96,6 +98,7 @@ public class EmployeeController extends TokenController {
         }
         employeeService.createEmployee(name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData);
         phoneService.createPhoneNumberEmployee(cCode,phoneNumbers,employeeService.getByEmailPro(emailPro));
+        cnapsService.createEmployee(name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData,employeeService.getByEmailPro(emailPro).getId());
         return "redirect:/index";
     }
 
@@ -124,13 +127,13 @@ public class EmployeeController extends TokenController {
 
     @GetMapping("/updateEmployee/{matricule}")
     public String updateEmployee(@PathVariable String matricule,Model model){
-        model.addAttribute("employee",employeeService.getByMatricule(matricule));
+        model.addAttribute("employee",employeeService.getByMatriculeWithCnaps(matricule));
         return "updateEmployee";
     }
 
     @GetMapping("/formEmployee/{matricule}")
     public String formEmployee(@PathVariable String matricule,Model model){
-        model.addAttribute("employee",employeeService.getByMatricule(matricule));
+        model.addAttribute("employee",employeeService.getByMatriculeWithCnaps(matricule));
         return "formEmployee";
     }
 
@@ -150,7 +153,6 @@ public class EmployeeController extends TokenController {
             @RequestParam("child") Integer child,
             @RequestParam("employementDate")@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eDate,
             @RequestParam("departureDate")@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dDate,
-            @RequestParam("cnaps") String cnaps,
             @RequestParam("cCode") String cCode,
             @RequestParam("phoneNumbers") String phoneNumbers,
             @RequestParam("cinNumber") String cinNumber) throws IOException {
@@ -161,8 +163,9 @@ public class EmployeeController extends TokenController {
                         throw new IllegalArgumentException("Phone number need to be exactly 10");
                     }
                 }
-                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData);
+                employeeService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cinNumber,fileData);
                 phoneService.updatePhoneNumber(cCode,phoneNumbers,employeeService.getByMatricule(matricule));
+                cnapsService.crupdateEmployee(matricule,name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cinNumber,fileData);
         return "redirect:/index";
     }
 }

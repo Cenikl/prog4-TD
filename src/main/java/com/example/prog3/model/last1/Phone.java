@@ -21,11 +21,11 @@ public class Phone {
     private String countryCode;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phone_employee", referencedColumnName = "id")
+    @JoinColumn(name = "phoneEmployee", referencedColumnName = "id")
     private Employee phoneEmployee;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phone_enterprise", referencedColumnName = "id")
+    @JoinColumn(name = "phoneEnterprise", referencedColumnName = "id")
     private Enterprise phoneEnterprise;
 
 }
