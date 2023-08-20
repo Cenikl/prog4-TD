@@ -1,6 +1,6 @@
 package com.example.prog3.Service.last1;
 
-import com.example.prog3.Repository.RepositoryImpl;
+import com.example.prog3.Repository.RepositoryFacadeImpl;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.Repository.last1.EmployeeRepository;
 import com.example.prog3.model.last1.Phone;
@@ -29,7 +29,7 @@ public class EmployeeService {
     @PersistenceContext
     private EntityManager entityManager;
     private final EmployeeRepository employeeRepository;
-    private final RepositoryImpl repository;
+    private final RepositoryFacadeImpl repository;
 
     public void exportToCsv(List<Employee> employees,PhoneService phoneService, HttpServletResponse response) throws IOException {
         String header = "First Name,Last Name,Birth Date,Matricule,Gender,Csp,Address,Email Professionel,Email Personnel,Fonction,Nombres dEnfants,Employement Date,Departure Date,Numéro Cnaps,Telephone,Numéro Cin\n";

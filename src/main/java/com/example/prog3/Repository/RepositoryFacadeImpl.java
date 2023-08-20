@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @AllArgsConstructor
 @Transactional
-public class RepositoryImpl implements RepositoryEmployee{
+public class RepositoryFacadeImpl implements RepositoryFacade {
     private final EmployeeRepository employeeRepository;
     private final CnapsRepository cnapsRepository;
 
