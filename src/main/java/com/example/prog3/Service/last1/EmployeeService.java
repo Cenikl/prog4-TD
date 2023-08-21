@@ -218,7 +218,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     };
     public Employee crupdateEmployee(String matricule, String name, String lastName, LocalDate birthDate, String sex, String csp, String address, String emailPro, String emailPerso, String role, Integer child, LocalDate eDate, LocalDate dDate, String cin, byte[] image){
-        Employee employee = getByMatriculeWithCnaps(matricule);
+        Employee employee = getByMatricule(matricule);
         employee.setFirstName(name);
         employee.setLastName(lastName);
         employee.setBirthDate(birthDate);
