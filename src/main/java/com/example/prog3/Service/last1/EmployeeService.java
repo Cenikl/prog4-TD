@@ -62,17 +62,13 @@ public class EmployeeService {
   public Optional<Employee> getById(Long id) {
     return employeeRepository.findById(id);
   }
-
-  @Transactional
-  public Employee getByMatriculeWithCnaps(String matricule) {
-    return repository.findByMatricule(matricule);
-  }
-
   // Does an employee should always have a cnaps ?
   public Employee getByMatricule(String matricule) {
     Cnaps cnaps = cnapsRepository.findByMatricule(matricule);
     if (cnaps != null) {
-      return employeeRepository.findByMatricule(cnaps.getMatricule());
+      Employee employee= employeeRepository.findByMatricule(matricule);
+      employee.setCnaps(cnaps.getCnaps());
+      return employee;
     } else {
       return employeeRepository.findByMatricule(matricule);
     }

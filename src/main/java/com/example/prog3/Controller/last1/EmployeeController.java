@@ -127,13 +127,13 @@ public class EmployeeController extends TokenController {
 
     @GetMapping("/updateEmployee/{matricule}")
     public String updateEmployee(@PathVariable String matricule,Model model){
-        model.addAttribute("employee",employeeService.getByMatriculeWithCnaps(matricule));
+        model.addAttribute("employee",employeeService.getByMatricule(matricule));
         return "updateEmployee";
     }
 
     @GetMapping("/formEmployee/{matricule}")
     public String formEmployee(@PathVariable String matricule,Model model){
-        model.addAttribute("employee",employeeService.getByMatriculeWithCnaps(matricule));
+        model.addAttribute("employee",employeeService.getByMatricule(matricule));
         return "formEmployee";
     }
 
