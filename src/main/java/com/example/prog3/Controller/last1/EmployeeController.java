@@ -85,7 +85,6 @@ public class EmployeeController extends TokenController {
             @RequestParam("child") Integer child,
             @RequestParam("employementDate")@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eDate,
             @RequestParam("departureDate")@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dDate,
-            @RequestParam("cnaps") String cnaps,
             @RequestParam(value = "cCode",required = false) String cCode,
             @RequestParam("phoneNumbers") String phoneNumbers,
             @RequestParam("cinNumber") String cinNumber) throws IOException {
@@ -96,6 +95,7 @@ public class EmployeeController extends TokenController {
                 throw new IllegalArgumentException("Phone number need to be exactly 10");
             }
         }
+        String cnaps = "";
         employeeService.createEmployee(name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData);
         phoneService.createPhoneNumberEmployee(cCode,phoneNumbers,employeeService.getByEmailPro(emailPro));
         cnapsService.createEmployee(name,lastName,birthDate,sex,csp,address,emailPro,emailPerso,role,child,eDate,dDate,cnaps,cinNumber,fileData,employeeService.getByEmailPro(emailPro).getId());
